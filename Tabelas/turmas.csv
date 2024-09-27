@@ -10,7 +10,6 @@ Nome,Periodo,Coordenador_responsavel,Professor_responsavel
 10LPNW,Noturno,Daniel Dennis,David Cohen
 5LPNY,Matutino,John Garcia,John Crane
 9LPNZ,Noturno,John Garcia,Christina Martin
-9LPNY,Noturno,Jacob Hoffman,Shelby Colon
 1LPNW,Noturno,Gary Le,Elizabeth Miller
 1LPNX,Matutino,Holly Williams,Alejandro Johnston
 3LPNZ,Noturno,Daniel Dennis,Kimberly Thompson
@@ -39,3 +38,4 @@ Nome,Periodo,Coordenador_responsavel,Professor_responsavel
 2LPNY,Noturno,Dr. Alicia Castillo,Ethan Mcclure
 8LPNX,Matutino,Joseph Jones,Laura Anderson
 2LPNX,Matutino,Julie Johnson,Frank Payne
+9LPNY,Matutino,John Doe,Jane Smith
