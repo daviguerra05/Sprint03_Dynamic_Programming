@@ -2,11 +2,11 @@ import pandas as pd
 
 # Função para carregar o DataFrame de Turmas
 def load_turmas_dataframe():
-    return pd.read_csv(r'C:\Users\labsfiap\Desktop\sprint dynamic\Sprint03_Dynamic_Programming\Tabelas\Turmas.csv')
+    return pd.read_csv(r'Tabelas\Turmas.csv')
 
 # Função para salvar o DataFrame de Turmas
 def save_turmas_dataframe(df):
-    df.to_csv(r'C:\Users\labsfiap\Desktop\sprint dynamic\Sprint03_Dynamic_Programming\Tabelas\Turmas.csv', index=False)
+    df.to_csv(r'Tabelas\Turmas.csv', index=False)
 
 # Função para mostrar todas as turmas
 def show_all_turmas():

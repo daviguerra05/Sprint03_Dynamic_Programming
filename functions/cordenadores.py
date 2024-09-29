@@ -2,11 +2,11 @@ import pandas as pd
 
 # Função para carregar o DataFrame de Coordenadores
 def load_coordenadores_dataframe():
-    return pd.read_csv(r'C:\Users\labsfiap\Desktop\sprint dynamic\Sprint03_Dynamic_Programming\Tabelas\Coordenadores.csv')
+    return pd.read_csv(r'Tabelas\Coordenadores.csv')
 
 # Função para salvar o DataFrame de Coordenadores
 def save_coordenadores_dataframe(df):
-    df.to_csv(r'C:\Users\labsfiap\Desktop\sprint dynamic\Sprint03_Dynamic_Programming\Tabelas\Coordenadores.csv', index=False)
+    df.to_csv(r'Tabelas\Coordenadores.csv', index=False)
 
 # Função para mostrar todos os coordenadores
 def show_all_coordenadores():

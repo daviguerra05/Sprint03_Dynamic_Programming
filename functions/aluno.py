@@ -2,11 +2,11 @@ import pandas as pd
 
 # Função para carregar o DataFrame
 def load_dataframe():
-    return pd.read_csv(r'C:\Users\labsfiap\Desktop\sprint dynamic\Sprint03_Dynamic_Programming\Tabelas\Alunos.csv')
+    return pd.read_csv(r'Tabelas\Alunos.csv')
 
 # Função para salvar o DataFrame
 def save_dataframe(df):
-    df.to_csv(r'C:\Users\labsfiap\Desktop\sprint dynamic\Sprint03_Dynamic_Programming\Tabelas\Alunos.csv', index=False)
+    df.to_csv(r'Tabelas\Alunos.csv', index=False)
 
 # Função para mostrar todos os alunos
 def show_all_students():

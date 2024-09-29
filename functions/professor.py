@@ -2,11 +2,11 @@ import pandas as pd
 
 # Função para carregar o DataFrame
 def load_professor_dataframe():
-    return pd.read_csv(r'C:\Users\labsfiap\Desktop\sprint dynamic\Sprint03_Dynamic_Programming\Tabelas\Professores.csv')
+    return pd.read_csv(r'Tabelas\Professores.csv')
 
 # Função para salvar o DataFrame
 def save_professor_dataframe(df):
-    df.to_csv(r'C:\Users\labsfiap\Desktop\sprint dynamic\Sprint03_Dynamic_Programming\Tabelas\Professores.csv', index=False)
+    df.to_csv(r'Tabelas\Professores.csv', index=False)
 
 # Função para mostrar todos os professores
 def show_all_professors():
