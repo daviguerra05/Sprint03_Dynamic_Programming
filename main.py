@@ -104,7 +104,7 @@ def main():
                                 delete_turma_by_name(nome)
                             elif op2 == 5:
                                 nome_antigo = input("Digite o nome da turma a ser modificada: ")
-                                modify_turma_by_name(nome)
+                                modify_turma_by_name(nome_antigo)
                             elif op2 == 0:
                                 print("Saindo do menu de operações dos coordenadores.")
                                 break
