@@ -85,6 +85,7 @@ class TabelaAlunos:
         df = self.load_dataframe()
         df_turmas = pd.read_csv('./Tabelas/turmas.csv')
         turmas = list(df_turmas['Nome'])
+        lista_de_alunos=list(df_turmas['Rm'])
         
         if idade <= 17:
             print("A idade deve ser maior que 17.")
@@ -117,7 +118,7 @@ class TabelaAlunos:
             return
 
         # Verifica se já existe um aluno com o mesmo RM
-        if df[df['Rm'] == rm].empty:
+        if rm in lista_de_alunos:
             novo_aluno = pd.DataFrame({
                 'Nome': [nome],
                 'Idade': [idade],
