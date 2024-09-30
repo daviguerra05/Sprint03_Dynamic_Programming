@@ -105,6 +105,7 @@ class TabelaAlunos:
         if num_insignias > 15:
             print("O número máximo de insígnias é 15.")
             return
+        
         # Verifica se já existe um aluno com o mesmo RM
         if self.df[self.df['Rm'] == rm].empty:
             novo_aluno = pd.DataFrame({

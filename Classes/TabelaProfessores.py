@@ -32,6 +32,8 @@ class TabelaProfessores:
         plt.ylabel('Frequência')
         plt.show()
 
+    # Atualização da tabela ----------------------------------------------------------
+
     def salvar_dataset(df):
         df.to_csv('./Tabelas/professores.csv', index=False)
 
