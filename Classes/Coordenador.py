@@ -1,19 +1,29 @@
-class Coordenador:
-    def __init__(self, id: int, nome: str, idade: int, sexo: str, registro: int):
-        self.id = id
-        self.nome = nome
-        self.idade = idade
-        self.sexo = sexo
-        self.registro = registro
+from IPython.display import display
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 
-    # Métodos get e set para registro
-    def getRegistro(self) -> int:
-        return self.registro
+def receber_dados_coordenadores():
+    return pd.read_csv('./Tabelas/coordenadores.csv')
 
-    def setRegistro(self, registro: int) -> None:
-        self.registro = registro
+class TabelaCoordenadores:
+    # Construtor
+    def __init__(self, dataframe) -> None:
+        self.df = dataframe
 
-    # Representação da classe em string
-    def __str__(self) -> str:
-        return (f"ID: {self.id}, Nome: {self.nome}, Idade: {self.idade}, Sexo: {self.sexo}, "
-                f"Registro: {self.registro}")
+    # Gráfico: Distribuição de Sexo por Idade
+    def grafico_sexo_por_idade(self):
+        plt.figure(figsize=(10, 6))
+        sns.countplot(data=self.df, x='Idade', hue='Sexo', palette='Set2')
+        plt.title('Distribuição de Sexo por Idade dos Coordenadores')
+        plt.xlabel('Idade')
+        plt.ylabel('Número de Coordenadores')
+        plt.legend(title='Sexo')
+        plt.grid(axis='y', alpha=0.75)
+        plt.show()
+
+# Exemplo de uso:
+df_coordenadores = receber_dados_coordenadores()  # Recebe os dados através da função
+
+tabela_coordenadores = TabelaCoordenadores(df_coordenadores)  # Instancia a tabela com os dados recebidos
+tabela_coordenadores.grafico_sexo_por_idade()  # Gráfico de sexo por idade
