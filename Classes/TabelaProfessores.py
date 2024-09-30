@@ -41,6 +41,9 @@ class TabelaProfessores:
     def adicionarProfessor(self, Professor):
         # Verifica se já existe um professor com o mesmo registro
         if self.df[self.df['Registro'] == Professor.Registro].empty:
+            if len(str(Professor.Registro) > 5):
+                print('Registro está em um formato incorreto.')
+                return 
             novo_professor = pd.DataFrame({
                 'Nome': [Professor.Nome],
                 'Idade': [Professor.Idade],
