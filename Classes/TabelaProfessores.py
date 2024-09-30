@@ -8,6 +8,9 @@ class TabelaProfessores:
     def __init__(self, dataframe):
         self.df = dataframe
 
+    def show(self):
+        display(self.df)
+
     # Estatísticas descritivas ----------------------------------------------------------
     # Por Sexo
     def media_idade_sexo(self):
@@ -34,26 +37,27 @@ class TabelaProfessores:
 
     # Atualização da tabela ----------------------------------------------------------
 
-    def salvar_dataset(df):
-        df.to_csv('./Tabelas/professores.csv', index=False)
+    def salvar_dataset(self):
+        self.df.to_csv('./Tabelas/professores.csv', index=False)
 
     #Create
     def adicionarProfessor(self, Professor):
         # Verifica se já existe um professor com o mesmo registro
         if self.df[self.df['Registro'] == Professor.Registro].empty:
-            if len(str(Professor.Registro) > 5):
+            if len(str(Professor.Registro)) > 5:
                 print('Registro está em um formato incorreto.')
                 return 
             novo_professor = pd.DataFrame({
-                'Nome': [Professor.Nome],
-                'Idade': [Professor.Idade],
-                'Sexo': [Professor.Sexo],
-                'Registro' : [Professor.Registro]
+                'Nome': Professor.Nome,
+                'Idade': Professor.Idade,
+                'Sexo': Professor.Sexo,
+                'Registro' : Professor.Registro
             })
 
             # Concatenar o novo professor com o DataFrame existente
             self.df = pd.concat([self.df, novo_professor], ignore_index=True)
-            self.save_dataframe(self.df)
+            
+            self.salvar_dataset()
 
             print(f"Professor de registro {Professor.Registro} adicionado com sucesso.")
         else:
@@ -65,18 +69,18 @@ class TabelaProfessores:
         # Verifica se o registro existe
         if not self.df[self.df['Registro'] == registro].empty:
             self.df = self.df[self.df['Registro'] != registro]  # Remove o professor com o Registro correspondente
-            self.save_dataframe(self.df)
+            self.salvar_dataset()
             print(f"Professor com Registro {registro} excluído com sucesso.")
         else:
             print(f"Professor com Registro {registro} não encontrado.")
     
     #Update
     # Regras de negócia permite apenas alteração nestes campos
-    def modificar_professor_por_registro(self,novo_nome=None, nova_idade=None, professor=None):
-        if professor:
+    def modificar_professor_por_registro(self,novo_nome=None, nova_idade=None, Registro=None):
+        if Registro:
             # Verifica se o Registro existe
-            if not self.df[self.df['Registro'] == professor.Registro].empty:
-                professor_index = self.df[self.df['Registro'] == professor.Registro].index[0]
+            if not self.df[self.df['Registro'] == Registro].empty:
+                professor_index = self.df[self.df['Registro'] == Registro].index[0]
 
                 if novo_nome:
                     self.df.at[professor_index, 'Nome'] = novo_nome
@@ -84,13 +88,13 @@ class TabelaProfessores:
                     self.df.at[professor_index, 'Idade'] = int(nova_idade) 
 
                 # Salva o DataFrame modificado
-                self.salvar_dataset(self.df)
-                print(f"\nDados do professor com Registro {professor.Registro} modificados com sucesso.")
+                self.salvar_dataset()
+                print(f"\nDados do professor com Registro {Registro} modificados com sucesso.")
 
                 # Printa os dados do professor modificado
                 professor_modificado = self.df.loc[professor_index]
                 print(f"Professor modificado:\n{professor_modificado}")
             else:
-                print(f"Professor com Registro {professor.Registro} não encontrado.")
+                print(f"Professor com Registro {Registro} não encontrado.")
         else:
-            print('Nenhmum professor recebido na função.')
+            print('Não foi informado nenhum registro')

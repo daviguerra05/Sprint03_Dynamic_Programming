@@ -2,10 +2,10 @@ from IPython.display import display
 import pandas as pd
 import seaborn as sns
 
-
 class TabelaAlunos:
+    
     #Construtor
-    def _init_(self,dataframe) -> None:
+    def __init__(self,dataframe) -> None:
         self.df = dataframe
 
     #Estastísticas descritivas ----------------------------------------------------------
@@ -70,7 +70,6 @@ class TabelaAlunos:
     def load_dataframe():
         return pd.read_csv('./Tabelas/alunos.csv')
     
-
     # Função para buscar aluno por RM
     def search_student_by_rm(rm):
         df = TabelaAlunos.load_dataframe()
@@ -133,8 +132,6 @@ class TabelaAlunos:
             print(f"Aluno com RM {rm} adicionado com sucesso.")
         else:
             print(f"Já existe um aluno com o RM {rm}.")
-
-
 
     # Função para excluir um aluno por RM
     def delete_student_by_rm(rm):
