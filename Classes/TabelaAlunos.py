@@ -121,8 +121,6 @@ class TabelaAlunos:
 
         # Verifica se já existe um aluno com o mesmo RM
         aluno = df[df['Rm'] == rm]
-        print(aluno)
-
         # Inverte a lógica: se o aluno não existe, adiciona
         if aluno.empty:
             # Cria o novo aluno apenas se não existir um aluno com o mesmo RM
