@@ -5,7 +5,7 @@ import seaborn as sns
 
 class TabelaAlunos:
     #Construtor
-    def _init_(self,dataframe) -> None:
+    def __init__(self,dataframe) -> None:
         self.df = dataframe
 
     #Estastísticas descritivas ----------------------------------------------------------
