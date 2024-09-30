@@ -13,4 +13,4 @@ def receber_dados_coordenadores():
     return TabelaCoordenadores.TabelaCoordenadores(pd.read_csv('./Tabelas/coordenadores.csv'))
 
 def receber_dados_turmas():
-    return TabelaTurmas.TabelaTurmas(pd.read_csv('./Tabelas/turmas.csv'))
+    return TabelaTurmas.TabelaTurmas(pd.read_csv('./Tabelas/turmas.csv'))    
