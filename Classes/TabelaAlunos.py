@@ -58,7 +58,6 @@ class TabelaAlunos:
     def pontuacao_por_numero_insignias(self):
         display(self.df.groupby('Num_insignias')['Pontuacao'].mean().reset_index())
 
-
     #desempenho ----------------------------------------------------------
     def diferenca_desempenho_por_turma(self):
         display(self.df.groupby('Turma')[['Pontuacao', 'Num_simulacoes']].mean().reset_index())

@@ -90,10 +90,6 @@ class TabelaProfessores:
                 # Salva o DataFrame modificado
                 self.salvar_dataset()
                 print(f"\nDados do professor com Registro {Registro} modificados com sucesso.")
-
-                # Printa os dados do professor modificado
-                professor_modificado = self.df.loc[professor_index]
-                print(f"Professor modificado:\n{professor_modificado}")
             else:
                 print(f"Professor com Registro {Registro} não encontrado.")
         else:
