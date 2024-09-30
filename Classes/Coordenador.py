@@ -27,3 +27,9 @@ df_coordenadores = receber_dados_coordenadores()  # Recebe os dados através da 
 
 tabela_coordenadores = TabelaCoordenadores(df_coordenadores)  # Instancia a tabela com os dados recebidos
 tabela_coordenadores.grafico_sexo_por_idade()  # Gráfico de sexo por idade
+
+
+
+
+
+
