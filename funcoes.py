@@ -14,7 +14,3 @@ def receber_dados_coordenadores():
 
 def receber_dados_turmas():
     return TabelaTurmas.TabelaTurmas(pd.read_csv('./Tabelas/turmas.csv'))
-
-#Create
-def adicionarAluno(dataframe, Aluno):
-    dataframe.loc[len(dataframe)] = Aluno.getDados()
