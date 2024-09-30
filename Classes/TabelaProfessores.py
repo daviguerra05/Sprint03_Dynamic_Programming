@@ -32,9 +32,12 @@ class TabelaProfessores:
         plt.ylabel('Frequência')
         plt.show()
 
+    # Atualização da tabela ----------------------------------------------------------
+
     def salvar_dataset(df):
         df.to_csv('./Tabelas/professores.csv', index=False)
 
+    #Create
     def adicionarProfessor(self, Professor):
         # Verifica se já existe um professor com o mesmo registro
         if self.df[self.df['Registro'] == Professor.Registro].empty:
@@ -51,14 +54,40 @@ class TabelaProfessores:
 
             print(f"Professor de registro {Professor.Registro} adicionado com sucesso.")
         else:
-            print(f"Já existe um aluno com o Registro {Professor.Registro}.")
+            print(f"Já existe um professor com o Registro {Professor.Registro}.")
 
+    #Delete
     # Função para excluir um professor pelo seu registro
     def deletar_professor_por_registro(self, registro):
         # Verifica se o registro existe
         if not self.df[self.df['Registro'] == registro].empty:
-            self.df = self.df[self.df['Registro'] != registro]  # Remove o aluno com o Registro correspondente
+            self.df = self.df[self.df['Registro'] != registro]  # Remove o professor com o Registro correspondente
             self.save_dataframe(self.df)
             print(f"Professor com Registro {registro} excluído com sucesso.")
         else:
             print(f"Professor com Registro {registro} não encontrado.")
+    
+    #Update
+    # Regras de negócia permite apenas alteração nestes campos
+    def modificar_professor_por_registro(self,novo_nome=None, nova_idade=None, professor=None):
+        if professor:
+            # Verifica se o Registro existe
+            if not self.df[self.df['Registro'] == professor.Registro].empty:
+                professor_index = self.df[self.df['Registro'] == professor.Registro].index[0]
+
+                if novo_nome:
+                    self.df.at[professor_index, 'Nome'] = novo_nome
+                if nova_idade:
+                    self.df.at[professor_index, 'Idade'] = int(nova_idade) 
+
+                # Salva o DataFrame modificado
+                self.salvar_dataset(self.df)
+                print(f"\nDados do professor com Registro {professor.Registro} modificados com sucesso.")
+
+                # Printa os dados do professor modificado
+                professor_modificado = self.df.loc[professor_index]
+                print(f"Professor modificado:\n{professor_modificado}")
+            else:
+                print(f"Professor com Registro {professor.Registro} não encontrado.")
+        else:
+            print('Nenhmum professor recebido na função.')

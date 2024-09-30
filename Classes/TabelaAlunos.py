@@ -5,7 +5,7 @@ import seaborn as sns
 
 class TabelaAlunos:
     #Construtor
-    def __init__(self,dataframe) -> None:
+    def _init_(self,dataframe) -> None:
         self.df = dataframe
 
     #Estastísticas descritivas ----------------------------------------------------------
@@ -170,6 +170,4 @@ class TabelaAlunos:
             aluno_modificado = df.loc[aluno_index]
             print(f"Aluno modificado:\n{aluno_modificado}")
         else:
-            print(f"Aluno com RM {rm} não encontrado.")
-
-
+            print(f"Aluno com RM {rm} não encontrado.")
