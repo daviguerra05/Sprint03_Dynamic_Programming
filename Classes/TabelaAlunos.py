@@ -106,53 +106,16 @@ class TabelaAlunos:
         else:
             print(f"Aluno com RM {rm} não encontrado.")
 
-    def modify_student_by_rm(self,rm):
+    def modify_student_by_rm(self,rm,novo_nome ,nova_idade):
         # Verifica se o RM existe
         if not self.df[self.df['Rm'] == rm].empty:
             aluno_index = self.df[self.df['Rm'] == rm].index[0]
             print(f"Aluno encontrado:\n{self.df.loc[aluno_index]}")
 
-            # Menu de opções para modificar atributos
-            while True:
-                print("\nEscolha o atributo que deseja modificar:")
-                print("1 - Nome")
-                print("2 - Idade")
-                print("3 - Sexo")
-                print("4 - Turma")
-                print("5 - Pontuação")
-                print("6 - Número de Simulações")
-                print("7 - Número de Insígnias")
-                print("0 - Finalizar modificações")
-
-                escolha = input("Digite o número correspondente ao atributo: ")
-
-                if escolha == '1':
-                    nome = input("Digite o novo nome: ")
-                    self.df.at[aluno_index, 'Nome'] = nome
-                elif escolha == '2':
-                    idade = input("Digite a nova idade: ")
-                    self.df.at[aluno_index, 'Idade'] = int(idade)  # Converte para inteiro
-                elif escolha == '3':
-                    sexo = input("Digite o novo sexo (M/F): ")
-                    self.df.at[aluno_index, 'Sexo'] = sexo
-                elif escolha == '4':
-                    turma = input("Digite a nova turma: ")
-                    self.df.at[aluno_index, 'Turma'] = turma
-                elif escolha == '5':
-                    pontuacao = input("Digite a nova pontuação: ")
-                    self.df.at[aluno_index, 'Pontuacao'] = float(pontuacao)  # Converte para float se necessário
-                elif escolha == '6':
-                    num_simulacoes = input("Digite o novo número de simulações: ")
-                    self.df.at[aluno_index, 'Num_simulacoes'] = int(num_simulacoes)  # Converte para inteiro
-                elif escolha == '7':
-                    num_insignias = input("Digite o novo número de insígnias: ")
-                    self.df.at[aluno_index, 'Num_insignias'] = int(num_insignias)  # Converte para inteiro
-                elif escolha == '0':
-                    print("Modificações finalizadas.")
-                    break
-                else:
-                    print("Opção inválida. Escolha novamente.")
-
+            if novo_nome is not None:
+                self.df.at[aluno_index, 'Nome'] = novo_nome
+            if nova_idade is not None:
+                self.df.at[aluno_index, 'Idade'] = int(nova_idade)  
             # Salva o DataFrame modificado
             TabelaAlunos.save_dataframe(self.df)
             print(f"\nDados do aluno com RM {rm} modificados com sucesso.")
