@@ -5,7 +5,7 @@ import seaborn as sns
 
 class TabelaAlunos:
     #Construtor
-    def _init_(self,dataframe) -> None:
+    def __init__(self,dataframe) -> None:
         self.df = dataframe
 
     #Estastísticas descritivas ----------------------------------------------------------
@@ -64,12 +64,15 @@ class TabelaAlunos:
         display(self.df.groupby('Turma')[['Pontuacao', 'Num_simulacoes']].mean().reset_index())
 
     # Função para salvar o DataFrame corrigida
-    def save_dataframe(self):
-        self.df.to_csv('./Tabelas/alunos.csv', index=False)
+    def save_dataframe(df):
+        df.to_csv('./Tabelas/alunos.csv', index=False)
+
+
 
     # Função para carregar o DataFrame corrigida
     def load_dataframe(self):
         self.df = pd.read_csv('./Tabelas/alunos.csv')
+        return self.df
 
 
     # Função para buscar aluno por RM
@@ -82,11 +85,11 @@ class TabelaAlunos:
             print(f"Aluno com RM {rm} não encontrado.")
 
     def add_student(self, nome, idade, sexo, turma, rm, pontuacao, num_simulacoes, num_insignias):
-        df = self.load_dataframe()
+        df = TabelaAlunos.load_dataframe(self)
         df_turmas = pd.read_csv('./Tabelas/turmas.csv')
         turmas = list(df_turmas['Nome'])
-        lista_de_alunos=list(df_turmas['Rm'])
         
+        # Validação de idade
         if idade <= 17:
             print("A idade deve ser maior que 17.")
             return
@@ -118,7 +121,12 @@ class TabelaAlunos:
             return
 
         # Verifica se já existe um aluno com o mesmo RM
-        if rm in lista_de_alunos:
+        aluno = df[df['Rm'] == rm]
+        print(aluno)
+
+        # Inverte a lógica: se o aluno não existe, adiciona
+        if aluno.empty:
+            # Cria o novo aluno apenas se não existir um aluno com o mesmo RM
             novo_aluno = pd.DataFrame({
                 'Nome': [nome],
                 'Idade': [idade],
@@ -132,10 +140,11 @@ class TabelaAlunos:
 
             # Concatenar o novo aluno com o DataFrame existente
             df = pd.concat([df, novo_aluno], ignore_index=True)
-            self.save_dataframe()
+            df.to_csv('./Tabelas/alunos.csv', index=False)
             print(f"Aluno com RM {rm} adicionado com sucesso.")
         else:
             print(f"Já existe um aluno com o RM {rm}.")
+
 
     # Função para excluir um aluno por RM
     def delete_student_by_rm(self, rm):
@@ -144,7 +153,7 @@ class TabelaAlunos:
         # Verifica se o RM existe
         if not df[df['Rm'] == rm].empty:
             df = df[df['Rm'] != rm]  # Remove o aluno com o RM correspondente
-            self.save_dataframe()
+            df.to_csv('./Tabelas/alunos.csv', index=False)
             print(f"Aluno com RM {rm} excluído com sucesso.")
         else:
             print(f"Aluno com RM {rm} não encontrado.")
@@ -164,7 +173,7 @@ class TabelaAlunos:
                 df.at[aluno_index, 'Idade'] = int(nova_idade)  # Converte para inteiro
               
             # Salva o DataFrame modificado
-            self.save_dataframe()
+            df.to_csv('./Tabelas/alunos.csv', index=False)
             print(f"\nDados do aluno com RM {rm} modificados com sucesso.")
 
             # Printa os dados do aluno modificado
