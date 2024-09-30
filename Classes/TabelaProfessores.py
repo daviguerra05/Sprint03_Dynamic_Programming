@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 class TabelaProfessores:
     # Construtor
-    def __init__(self, dataframe) -> None:
+    def __init__(self, dataframe):
         self.df = dataframe
 
     # Estatísticas descritivas ----------------------------------------------------------
