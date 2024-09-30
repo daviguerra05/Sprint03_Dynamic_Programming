@@ -76,6 +76,35 @@ class TabelaAlunos:
 
     # Função para adicionar um novo aluno
     def add_student(self, nome, idade, sexo, turma, rm, pontuacao, num_simulacoes, num_insignias):
+        if idade <= 17:
+            print("A idade deve ser maior que 17.")
+            return
+        
+        # Verifica se a turma existe na tabela "Turmas"
+        if turma not in self.get_turmas():  # Supondo que existe um método get_turmas() que retorna as turmas existentes
+            print("A turma fornecida não existe.")
+            return
+
+        # Verifica se o RM tem 6 dígitos
+        if len(str(rm)) != 6:
+            print("O RM deve ter 6 dígitos.")
+            return
+
+        # Verifica se a pontuação máxima é válida
+        max_pontuacao = num_simulacoes * 1000
+        if pontuacao > max_pontuacao:
+            print(f"A pontuação máxima permitida é {max_pontuacao}.")
+            return
+        
+        # Verifica se o número de simulações está dentro do limite
+        if num_simulacoes > 3:
+            print("O número máximo de simulações é 3.")
+            return
+        
+        # Verifica se o número de insígnias está dentro do limite
+        if num_insignias > 15:
+            print("O número máximo de insígnias é 15.")
+            return
         # Verifica se já existe um aluno com o mesmo RM
         if self.df[self.df['Rm'] == rm].empty:
             novo_aluno = pd.DataFrame({
@@ -114,7 +143,7 @@ class TabelaAlunos:
 
             if novo_nome is not None:
                 self.df.at[aluno_index, 'Nome'] = novo_nome
-            if nova_idade is not None:
+            if nova_idade is not None and nova_idade>17:
                 self.df.at[aluno_index, 'Idade'] = int(nova_idade)  
             # Salva o DataFrame modificado
             TabelaAlunos.save_dataframe(self.df)
