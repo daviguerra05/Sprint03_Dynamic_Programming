@@ -1,5 +1,5 @@
 import pandas as pd
-from Classes import TabelaAlunos
+from Classes import TabelaAlunos, TabelaTurmas
 
 # Exemplo
 def distribuicao_dados_tabela_x():
@@ -16,4 +16,6 @@ def receber_dados_coordenadores():
     return pd.read_csv('./Tabelas/coordenadores.csv')
 
 def receber_dados_turmas():
-    return pd.read_csv('./Tabelas/turmas.csv')
+    return TabelaTurmas.TabelaTurmas(pd.read_csv('./Tabelas/turmas.csv'))
+
+
