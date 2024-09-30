@@ -3,10 +3,6 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-
-def receber_dados_professores():
-    return pd.read_csv('./Tabelas/professores.csv')
-
 class TabelaProfessores:
     # Construtor
     def __init__(self, dataframe) -> None:
@@ -35,11 +31,3 @@ class TabelaProfessores:
         plt.xlabel('Idade')
         plt.ylabel('Frequência')
         plt.show()
-
-# Exemplo de uso:
-df_professores = receber_dados_professores()  # Recebe os dados através da função
-
-tabela_professores = TabelaProfessores(df_professores)  # Instancia a tabela com os dados recebidos
-tabela_professores.media_geral_idade()  # Calcula e exibe a média de idade
-tabela_professores.maiores_idades()  # Exibe as 10 maiores idades
-tabela_professores.distribuicao_idade()  # Plota a distribuição de idades
