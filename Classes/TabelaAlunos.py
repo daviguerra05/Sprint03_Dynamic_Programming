@@ -40,4 +40,24 @@ class TabelaAlunos:
         display(self.df.nlargest(10, 'Pontuacao'))
     
     def distribuicao_pontuacao(self):
-        sns.histplot(data=self.df,x='Pontuacao')
+        sns.displot(data=self.df,x='Pontuacao',kde=True)
+
+    #Simulacoes realizadas ----------------------------------------------------------
+    def media_simulacoes_realizadas_por_turma(self):
+        m = self.df.groupby('Turma')['Num_simulacoes'].mean().reset_index()
+        display(m)
+
+    def pontuaca_media_por_quantidade_simulacoes(self):
+        display(self.df.groupby('Num_simulacoes')['Pontuacao'].mean().reset_index())
+
+    #Insígnias ----------------------------------------------------------
+    def distribuicao_insignias(self):
+        display(self.df['Num_insignias'].value_counts().reset_index())
+    
+    def pontuacao_por_numero_insignias(self):
+        display(self.df.groupby('Num_insignias')['Pontuacao'].mean().reset_index())
+
+
+    #desempenho ----------------------------------------------------------
+    def diferenca_desempenho_por_turma(self):
+        display(self.df.groupby('Turma')[['Pontuacao', 'Num_simulacoes']].mean().reset_index())
