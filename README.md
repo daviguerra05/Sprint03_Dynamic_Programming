@@ -6,7 +6,11 @@ Este projeto realiza o carregamento de dados de diferentes tabelas relacionadas 
 
 - Python 3.7 ou superior
 - Bibliotecas:
-  - `pandas`: Utilizada para manipulação e leitura dos dados em formato CSV.
+  - `pandas`: Utilizada para manipulação e leitura dos dados em formato CSV. Facilita a manipulação de tabelas e a execução de operações como filtros, agregações e modificações de dados.
+  - `seaborn`: Biblioteca para visualização de dados baseada em `matplotlib`. Fornece uma interface de alto nível para a criação de gráficos estatísticos atraentes e informativos. No projeto, é usada para criar gráficos de contagem e distribuição.
+  - `IPython`: Ferramenta avançada para a criação de notebooks interativos no Jupyter, que facilita a exibição de gráficos e tabelas dentro de ambientes interativos. É usada para visualização de dados com o comando `display`.
+  - `matplotlib`: Biblioteca fundamental para a criação de gráficos e visualizações em Python. Embora `seaborn` a complemente, `matplotlib` é essencial para manipulações e ajustes mais detalhados de gráficos.
+  - `sklearn` (scikit-learn): Biblioteca de machine learning que oferece ferramentas simples e eficientes para análise e modelagem de dados. Pode ser utilizada em partes do projeto que envolvam classificação ou agrupamento de dados.
 
 ### Instalação
 
@@ -20,7 +24,7 @@ Este projeto realiza o carregamento de dados de diferentes tabelas relacionadas 
    ```
 3. Instale as dependências necessárias:
    ```bash
-   pip install pandas
+   pip install pandas seaborn IPython matplotlib scikit-learn
    ```
 
 ## Arquitetura do Projeto
