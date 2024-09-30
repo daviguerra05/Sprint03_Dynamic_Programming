@@ -8,9 +8,6 @@ class TabelaProfessores:
     def __init__(self, dataframe):
         self.df = dataframe
 
-    def show(self):
-        display(self.df)
-
     # Estatísticas descritivas ----------------------------------------------------------
     # Por Sexo
     def media_idade_sexo(self):
@@ -21,9 +18,8 @@ class TabelaProfessores:
 
     # Desempenho Geral
     def media_geral_idade(self):
-        m = self.df['Idade'].mean()
-        print(f'Média de idade dos professores: {m}')
-
+        print(f'Média de idade dos professores: {self.df['Idade'].mean()}')
+   
     def maiores_idades(self):
         print('\nAs 10 maiores idades dos professores:')
         display(self.df.nlargest(10, 'Idade'))
@@ -36,7 +32,6 @@ class TabelaProfessores:
         plt.show()
 
     # Atualização da tabela ----------------------------------------------------------
-
     def salvar_dataset(self):
         self.df.to_csv('./Tabelas/professores.csv', index=False)
 
@@ -64,7 +59,6 @@ class TabelaProfessores:
             print(f"Já existe um professor com o Registro {Professor.Registro}.")
 
     #Delete
-    # Função para excluir um professor pelo seu registro
     def deletar_professor_por_registro(self, registro):
         # Verifica se o registro existe
         if not self.df[self.df['Registro'] == registro].empty:

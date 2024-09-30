@@ -1,16 +1,10 @@
-import seaborn as sns
 import pandas as pd
 
 class TabelaTurmas:
+    #Construtor
     def __init__(self,dataframe) -> None:
         self.df = dataframe
-
-    def distribuicao_periodo(self):
-        sns.displot(data=self.df,x='Periodo')
-    
-    def getNomes(self):
-        return list(self.df['Nome'])
-    
+  
     # Atualização da tabela ----------------------------------------------------------
     def salvar_dataset(self):
         self.df.to_csv('./Tabelas/turmas.csv', index=False)
@@ -19,6 +13,7 @@ class TabelaTurmas:
     def adicionarTurma(self, Turma):
         professores = list(pd.read_csv('./Tabelas/professores.csv')['Nome'])
         coordenadores = pd.read_csv('./Tabelas/coordenadores.csv')
+
         # Verifica se já existe um Turma com o mesmo Nome
         if self.df[self.df['Nome'] == Turma.Nome].empty:
             if Turma.Professor_responsavel not in professores:
@@ -46,7 +41,6 @@ class TabelaTurmas:
             print(f"Já existe um Turma com o Nome {Turma.Nome}.")
 
     #Delete
-    # Função para excluir um Turma pelo seu Nome
     def deletar_Turma_por_Nome(self, Nome):
         # Verifica se o Nome existe
         if not self.df[self.df['Nome'] == Nome].empty:
