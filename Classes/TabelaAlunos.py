@@ -58,7 +58,6 @@ class TabelaAlunos:
     def pontuacao_por_numero_insignias(self):
         display(self.df.groupby('Num_insignias')['Pontuacao'].mean().reset_index())
 
-
     #desempenho ----------------------------------------------------------
     def diferenca_desempenho_por_turma(self):
         display(self.df.groupby('Turma')[['Pontuacao', 'Num_simulacoes']].mean().reset_index())
@@ -158,7 +157,7 @@ class TabelaAlunos:
         else:
             print(f"Aluno com RM {rm} não encontrado.")
 
-    def modify_student_by_rm(self, rm, novo_nome, nova_idade):
+    def modify_student_by_rm(self, rm, novo_nome=None, nova_idade=None):
         df = self.load_dataframe()
 
         # Verifica se o RM existe
