@@ -151,6 +151,12 @@ Os dados dos alunos foram analisados em várias categorias, incluindo turmas, id
 - **Modificar**: `alunos.modify_student_by_rm(235438, "Silva", 18)`
 - **Deletar**: `alunos.delete_student_by_rm(235438)`
 
+
+## fluxograma do sistema 
+
+A seguir segue um fluxograma mostrando de maneira visual o sistema 
+![fluxograma do projeto](Fluxograma/sistema.png)
+
 ## Análise de Desempenho
 
 A hipótese foi que podemos avaliar o desempenho de um aluno comparando sua pontuação com a previsão de um modelo elaborado. Foram realizados exemplos de análise para diferentes alunos.
