@@ -3,7 +3,6 @@ import pandas as pd
 import seaborn as sns
 from sklearn import linear_model 
 
-
 class TabelaAlunos:
     #Atributos
     modelo = None
@@ -31,14 +30,13 @@ class TabelaAlunos:
     def mediana_pontuacao_sexo(self):
         display(self.df.groupby('Sexo')['Pontuacao'].median().reset_index())
 
-    #Correlação ----------------------------------------------------------
+    #Correlação
     def correlacaoPontuacao(self):
         display(self.df[['Pontuacao', 'Num_simulacoes', 'Num_insignias']].corr())
 
     # Desempenho Geral
     def media_geral(self):
-        m = self.df['Pontuacao'].mean()
-        print(f'Média pontuação dos alunos: {m}')
+        print(f'Média pontuação dos alunos: {self.df['Pontuacao'].mean()}')
 
     def melhores_pontuacoes(self):
         print('\nAs 10 maiores pontuações')
@@ -47,36 +45,27 @@ class TabelaAlunos:
     def distribuicao_pontuacao(self):
         sns.displot(data=self.df,x='Pontuacao',kde=True)
 
-    #Simulacoes realizadas ----------------------------------------------------------
+    #Simulacoes realizadas
     def media_simulacoes_realizadas_por_turma(self):
-        m = self.df.groupby('Turma')['Num_simulacoes'].mean().reset_index()
-        display(m)
+        display(self.df.groupby('Turma')['Num_simulacoes'].mean().reset_index())
 
     def pontuaca_media_por_quantidade_simulacoes(self):
         display(self.df.groupby('Num_simulacoes')['Pontuacao'].mean().reset_index())
 
-    #Insígnias ----------------------------------------------------------
+    #Insígnias 
     def distribuicao_insignias(self):
         display(self.df['Num_insignias'].value_counts().reset_index())
     
-    def pontuacao_por_numero_insignias(self):
+    def pontuacao_media_por_numero_insignias(self):
         display(self.df.groupby('Num_insignias')['Pontuacao'].mean().reset_index())
 
-    #desempenho ----------------------------------------------------------
+    #Desempenho 
     def diferenca_desempenho_por_turma(self):
         display(self.df.groupby('Turma')[['Pontuacao', 'Num_simulacoes']].mean().reset_index())
 
-    # Função para salvar o DataFrame corrigida
-    def save_dataframe(self):
+    # Atualização da tabela ----------------------------------------------------------
+    def salvar_dataframe(self):
         self.df.to_csv('./Tabelas/alunos.csv', index=False)
-
-    # Função para buscar aluno por RM
-    def search_student_by_rm(self, rm):
-        aluno = self.df[self.df['Rm'] == rm]
-        if not aluno.empty:
-            print(aluno)
-        else:
-            print(f"Aluno com RM {rm} não encontrado.")
 
     def add_student(self, nome, idade, sexo, turma, rm, pontuacao, num_simulacoes, num_insignias):
         df_turmas = pd.read_csv('./Tabelas/turmas.csv')
@@ -163,7 +152,7 @@ class TabelaAlunos:
         else:
             print(f"Aluno com RM {rm} não encontrado.")
 
-    #Funções para prever pontuação do aluno e realizar análise
+    #Funções para prever pontuação do aluno e realizar análise ----------------------------------------------------------
     def treinarModelo(self):
         Y = self.df['Pontuacao']
         X = self.df[['Num_simulacoes','Num_insignias']]
@@ -186,8 +175,8 @@ class TabelaAlunos:
         prev = self.prever(aluno.Num_simulacoes[0],aluno.Num_insignias)
         dif = pont - prev
         if dif > 0:
-            print(f'Parabéns, você teve uma pontuação maior do que o previsto.')
+            print(f'Parabéns, você teve uma pontuação maior do que o previsto. Continue assim!')
         else:
-            print('Você não obteve uma pontuação maior do que o previsto, continue treinando!')
+            print('Você não obteve uma pontuação maior do que o previsto. Continue treinando!')
         
         print(f'Pontuação prevista de {round(prev,2)}, sua pontuacao foi de {round(pont,2)}')
